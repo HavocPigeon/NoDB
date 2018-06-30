@@ -11,6 +11,7 @@ class App extends Component {
       userInput: '',
       userEdits: '',
       clicked: false,
+      updatedComment: ''
     }
   }
   //inital page setup
@@ -27,8 +28,14 @@ class App extends Component {
        userInput: input
      })
    }
+
+   handleInput = (input) => {
+     this.setState({
+       updatedComment: input
+     })
+   }
    addComment = () => {
-    axios.post('/api/comments', {text: this.state.userInput}).then(comment => {
+    axios.post('/api/comments', {text: this.state.userInput, clicked: false}).then(comment => {
        this.setState({
          comments: comment.data
        })
@@ -41,13 +48,22 @@ class App extends Component {
       })
     })
   }
-  editComment = () => {
+  editComment = (id) => {
+    let copy = this.state.comments.slice();
+    let index = copy.findIndex(e => e.id === id)
+    copy[index].clicked =true;
     this.setState({
-      clicked: true
+      comments: copy
     })
   }
-  saveCommentEdits = () => {
-    axios.put('/api/comments/', {text: this.state.userEdits}).then(comment => {
+  changeUserEdits = (input) => {
+    this.setState({
+      userEdits: input
+    })
+  }
+  saveCommentEdits = (id) => {
+   axios.put(`/api/comments/${id}`, {text: this.state.updatedComment}).then(comment => {
+      console.log(comment.data)
       this.setState({
         comments: comment.data
       })
@@ -59,17 +75,24 @@ class App extends Component {
       return <img key={i} src={pic} alt='cat-gifs'/>
     })
     let commentBoxes = this.state.comments.map((message,i) => {
-      return <div key={i}>{message.text} <button className='editcomment' onClick={() => this.editComment()}>Edit</button><button className='removecomment' onClick={() => this.removeComment(message.id)}>Remove Comment</button>
-      </div>
+      return (<div key={i}>{message.text} {message.clicked ? 
+                                                    <div>
+                                                        <button onClick={() => this.saveCommentEdits(message.id)}>Save</button>
+                                                        <button className='removecomment' onClick={() => this.removeComment(message.id)}>Remove Comment</button>
+                                                    </div> 
+                                                    : <div>
+                                                          <button className='editcomment' onClick={() => this.editComment(message.id)}>Edit</button>
+                                                          <button className='removecomment' onClick={() => this.removeComment(message.id)}>Remove Comment</button>
+                                                    </div>}
+            {message.clicked && <input label="Saved Comments" className='commentbox' onChange={(e) => this.handleInput(e.target.value)}/>}
+      </div>)
     })
-    
     return (
       <div className="App">
         <div>
           <input className='inputcomment' onChange={(e) => this.changeInput(e.target.value)}/>
           <button className='addcomment' onClick={() => this.addComment()}>Add New Comment</button>
         </div>
-      {this.state.clicked ? <input label="Saved Comments" className='commentbox' onSubmit={this.saveCommentEdits} onSubmit={() => this.saveCommentEdits()}/>: null}
         {commentBoxes}
         {catPictures}
       </div>

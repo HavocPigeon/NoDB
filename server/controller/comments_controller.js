@@ -19,10 +19,10 @@ module.exports = {
     },
     update: (req, res) => {
     const {text} = req.body;
-    const {id} = req.params.id;
+    const {id} = req.params;
     comments.forEach(comment => {
-        if (comments.id == id){
-            comments.text = text;
+        if (comment.id == id){
+            comment.text = text;
         }
     })
     res.status(200).send(comments);
