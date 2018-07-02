@@ -83,8 +83,8 @@ h1 {
 padding-right: 75px;
 }
 .bottomlogo {
-  padding-left: 630px;
   font-family: 'Anton', sans-serif;
+  display: flex;
 }
 .editimage {
   width: 15px;
@@ -97,4 +97,7 @@ padding-right: 75px;
 .footer {
   font-family: 'Faster One', cursive;
   letter-spacing: 3px;
+}
+.one, .three {
+flex: 3;
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import NewCats from './Components/NewCats';
-import Logo from './Logo.js';
+import Logo from './Components/Logo.js';
 import Footertext from './Footertext.js';
 import Editimage from './pencil-point.png';
 import Removeimage from './note-1.png';
@@ -104,7 +104,11 @@ class App extends Component {
         {catPictures}
         </div>
         <Footertext/>
-        <div className='bottomlogo'><Logo/></div>
+        <div className='bottomlogo'>
+          <div className='one'></div>
+          <div className='two'><Logo/></div>
+          <div className='three'></div>
+          </div>
       </div>
     );
   }
