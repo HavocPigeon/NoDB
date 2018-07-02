@@ -3,7 +3,7 @@ import './App.css';
 import axios from 'axios';
 import NewCats from './Components/NewCats';
 import Logo from './Components/Logo.js';
-import Footertext from './Footertext.js';
+import Footertext from './Components/Footertext.js';
 import Editimage from './pencil-point.png';
 import Removeimage from './note-1.png';
 import Deleteimage from './deleteicon.png'
@@ -82,12 +82,12 @@ class App extends Component {
     let commentBoxes = this.state.comments.map((message,i) => {
       return (<div key={i} className='buttontext'>{message.text} {message.clicked ? 
                                                     <span className='buttons'>
-                                                        <button className='savebutton' onClick={() => this.saveCommentEdits(message.id)}><img className='removeimage' src={Removeimage}/></button>
-                                                        <button className='removecomment' onClick={() => this.removeComment(message.id)}><img className='deleteimage'src={Deleteimage}></img></button>
+                                                        <button className='savebutton' onClick={() => this.saveCommentEdits(message.id)}><img className='removeimage' src={Removeimage} alt='save-button'/></button>
+                                                        <button className='removecomment' onClick={() => this.removeComment(message.id)}><img className='deleteimage'src={Deleteimage} alt='remove-button'></img></button>
                                                     </span>
                                                     : <span className='buttons'>
-                                                          <button className='editcomment' onClick={() => this.editComment(message.id)}><img className='editimage' src={Editimage}/></button>
-                                                          <button className='removecomment' onClick={() => this.removeComment(message.id)}><img className='deleteimage'src={Deleteimage}></img></button>
+                                                          <button className='editcomment' onClick={() => this.editComment(message.id)}><img className='editimage' src={Editimage} alt='edit-button'/></button>
+                                                          <button className='removecomment' onClick={() => this.removeComment(message.id)}><img className='deleteimage'src={Deleteimage} alt='remove-button'></img></button>
                                                     </span>}
             {message.clicked && <input label="Saved Comments" className='commentbox' onChange={(e) => this.handleInput(e.target.value)}/>}
       </div>)
