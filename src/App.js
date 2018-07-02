@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import NewCats from './Components/NewCats';
 
 class App extends Component {
   constructor(){
@@ -10,7 +11,6 @@ class App extends Component {
       comments: [],
       userInput: '',
       userEdits: '',
-      clicked: false,
       updatedComment: ''
     }
   }
@@ -75,26 +75,29 @@ class App extends Component {
       return <img key={i} src={pic} alt='cat-gifs'/>
     })
     let commentBoxes = this.state.comments.map((message,i) => {
-      return (<div key={i}>{message.text} {message.clicked ? 
-                                                    <div>
+      return (<div key={i} className='buttontext'>{message.text} {message.clicked ? 
+                                                    <span className='buttons'>
                                                         <button onClick={() => this.saveCommentEdits(message.id)}>Save</button>
                                                         <button className='removecomment' onClick={() => this.removeComment(message.id)}>Remove Comment</button>
-                                                    </div> 
-                                                    : <div>
+                                                    </span>
+                                                    : <span className='buttons'>
                                                           <button className='editcomment' onClick={() => this.editComment(message.id)}>Edit</button>
                                                           <button className='removecomment' onClick={() => this.removeComment(message.id)}>Remove Comment</button>
-                                                    </div>}
+                                                    </span>}
             {message.clicked && <input label="Saved Comments" className='commentbox' onChange={(e) => this.handleInput(e.target.value)}/>}
       </div>)
     })
     return (
       <div className="App">
-        <div>
-          <input className='inputcomment' onChange={(e) => this.changeInput(e.target.value)}/>
+        <div className='anotheremptydiv'>
+        <h1>Random Cat Picture Generator</h1>
+          <input placeholder="     What's on your mind" className='inputcomment' onChange={(e) => this.changeInput(e.target.value)}/>
           <button className='addcomment' onClick={() => this.addComment()}>Add New Comment</button>
-        </div>
+        <h2>Comments/Favorite Cat Gifs</h2>
         {commentBoxes}
+        <NewCats/>
         {catPictures}
+        </div>
       </div>
     );
   }
