@@ -20,7 +20,7 @@ export default class NewCats extends Component {
         return(
             <div className='emptydiv'>
             <button className='updatecatpictures' onClick={() => this.updateCats()}>See More Cats</button>
-                                   <span className='emptyspace'></span>
+                                   <div className='emptyspace'></div>
                         <span className='updatedcats'>{catPictures}</span> 
             </div>
         )

@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import NewCats from './Components/NewCats';
+import Logo from './Logo.js';
+import Footertext from './Footertext.js';
+import Editimage from './pencil-point.png';
+import Removeimage from './note-1.png';
+import Deleteimage from './deleteicon.png'
 
 class App extends Component {
   constructor(){
@@ -42,7 +47,7 @@ class App extends Component {
      })
    }
   removeComment = (id) => {
-    axios.delete(`/api/comments/${id}`).then(comment => {
+    axios.delete(`/api/comments/?id=${id}`).then(comment => {
       this.setState({
         comments: comment.data
       })
@@ -77,12 +82,12 @@ class App extends Component {
     let commentBoxes = this.state.comments.map((message,i) => {
       return (<div key={i} className='buttontext'>{message.text} {message.clicked ? 
                                                     <span className='buttons'>
-                                                        <button onClick={() => this.saveCommentEdits(message.id)}>Save</button>
-                                                        <button className='removecomment' onClick={() => this.removeComment(message.id)}>Remove Comment</button>
+                                                        <button className='savebutton' onClick={() => this.saveCommentEdits(message.id)}><img className='removeimage' src={Removeimage}/></button>
+                                                        <button className='removecomment' onClick={() => this.removeComment(message.id)}><img className='deleteimage'src={Deleteimage}></img></button>
                                                     </span>
                                                     : <span className='buttons'>
-                                                          <button className='editcomment' onClick={() => this.editComment(message.id)}>Edit</button>
-                                                          <button className='removecomment' onClick={() => this.removeComment(message.id)}>Remove Comment</button>
+                                                          <button className='editcomment' onClick={() => this.editComment(message.id)}><img className='editimage' src={Editimage}/></button>
+                                                          <button className='removecomment' onClick={() => this.removeComment(message.id)}><img className='deleteimage'src={Deleteimage}></img></button>
                                                     </span>}
             {message.clicked && <input label="Saved Comments" className='commentbox' onChange={(e) => this.handleInput(e.target.value)}/>}
       </div>)
@@ -90,7 +95,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className='anotheremptydiv'>
-        <h1>Random Cat Picture Generator</h1>
+        <span> <Logo/><h1 className='title'>Random Cat Picture Generator</h1></span>
           <input placeholder="     What's on your mind" className='inputcomment' onChange={(e) => this.changeInput(e.target.value)}/>
           <button className='addcomment' onClick={() => this.addComment()}>Add New Comment</button>
         <h2>Comments/Favorite Cat Gifs</h2>
@@ -98,6 +103,8 @@ class App extends Component {
         <NewCats/>
         {catPictures}
         </div>
+        <Footertext/>
+        <div className='bottomlogo'><Logo/></div>
       </div>
     );
   }

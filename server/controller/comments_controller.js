@@ -9,7 +9,7 @@ module.exports = {
     res.status(200).send(comments);
     },
     delete: (req, res) => {
-    let commentId = req.params.id;
+    let commentId = req.query;
     let index = comments.findIndex(comment => comment.id == commentId)
     comments.splice(index, 1)
     res.status(200).send(comments);

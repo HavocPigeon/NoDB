@@ -1,15 +1,18 @@
 .App {
+  font-family: 'Press Start 2P', cursive;
   text-align: center;
-}
+  box-sizing: border-box;
+  }
 img {
   width: auto;
   height: 200px;
 }
 .emptyspace {
-padding-right: 1000px;
+padding-bottom: 5px;
+height: 10px;
 }
 .emptydiv {
-  padding-top: 41px;
+  padding-top: 17px;
   padding-bottom: 3px;
 }
 .updatecatpictures {
@@ -21,6 +24,7 @@ padding-right: 1000px;
   border-radius: 25px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   cursor: pointer;
+  margin-left: 12px;
 }
 .addcomment {
   padding-right: 15px;
@@ -31,35 +35,66 @@ padding-right: 1000px;
   border-radius: 25px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   cursor: pointer;
+  margin-right: 100px;
+}
+.savebutton {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  overflow: hidden;
+  background-repeat: no-repeat
 }
 .inputcomment {
   border-radius: 25px;
-  border: 2px solid
+  border: 2px solid;
 }
 .buttontext {
-  text-align: center;
+  padding-left: 88px;
 }
 .commentbox {
   border-radius: 25px;
-  border: 2px solid
+  border: 2px solid;
+  width: 500px;
 }
 .editcomment {
-  padding-right: 15px;
-  padding-left: 15px;
-  font-size: 15px;
-  background-color: red;
-  color: white;
-  border-radius: 25px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: transparent;
   cursor: pointer;
+  border: none;
+  overflow: hidden;
+  background-repeat: no-repeat;
 }
 .removecomment {
-  padding-right: 15px;
-  padding-left: 15px;
-  font-size: 15px;
-  background-color: red;
-  color: white;
-  border-radius: 25px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: transparent;
   cursor: pointer;
+  border: none;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+.catlogo {
+  float: left;
+  width: 100px;
+  height: auto;
+}
+.deleteimage {
+  width: 15px;
+  height: auto;
+}
+h1 {
+padding-right: 75px;
+}
+.bottomlogo {
+  padding-left: 630px;
+  font-family: 'Anton', sans-serif;
+}
+.editimage {
+  width: 15px;
+  height: auto;
+}
+.removeimage {
+  width: 15px;
+  height: auto;
+}
+.footer {
+  font-family: 'Faster One', cursive;
+  letter-spacing: 3px;
 }
